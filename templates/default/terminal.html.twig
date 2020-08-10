@@ -1,0 +1,192 @@
+{% include 'base.html.twig' %}
+{% include 'partials/_menu.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">Terminal</h1>
+    </div>
+
+   
+
+   
+
+
+{% endblock %}
+{# <div class="container">
+
+        <h2>Commande de base</h2>
+    <table>
+        <thead>
+            <tr class="text-center">
+                <th>commande</th>
+                <th>signification</th>
+                <th>fonction</th>
+                <th>exmples utilisation</th>
+                <th>options les plus fréquente</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td class="text-center">cd</td>
+                <td class="text-center">change directory</td>
+                <td class="text-center">Permet de se promener dans les répertoires</td>
+                <td> 
+                    <ul>
+                        <li><strong>cd : </strong> permet de revenir au répertoire /home/utilisateur (identique à cd ~)</li>
+                        <li><strong>cd - : </strong> permet de revenir au répertoire précédent</li>
+                        <li><strong>cd .. : </strong>permet de remonter au répertoire parent (ne pas oublier l'espace)</li>
+                        <li><strong>cd / : </strong>permet de remonter à la racine de l'ensemble du système de fichiers</li>
+                        <li><strong>cd /usr/bin/ : </strong>se place dans le répertoire /usr/bin/</li>
+                    </ul>
+                </td>
+                <td> 
+                   
+                </td>
+
+            </tr> 
+            <tr>
+                <td class="text-center">ls</td>
+                <td class="text-center">list</td>
+                <td class="text-center">Permet de lister un répertoire</td>
+                <td>
+                    <ul>
+                        <li><strong>ls -a :</strong>affiche tous les fichiers et répertoires y compris les cachés du répertoire courant</li>
+                        <li><strong>ls /etc/ :</strong>affiche le contenu du répertoire /etc/</li>
+                        <li><strong>lspci ou lsusb :</strong>affiche les périphériques PCI ou USB connectés.</li>
+                        <li><strong>lshw :</strong> affiche les caractéristiques de tout le matériel physique, non-logiciel (hardware).</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-l</strong> : Permet un affichage détaillé du répertoire (permissions d'accès, le nombre de liens physiques, le nom du propriétaire et du groupe, la taille en octets, et l'horodatage)</li>
+                        <li><strong>-h :</strong> Associé avec -l affiche la taille des fichiers avec un suffixe correspondant à l'unité (K, M, G)</li>
+                        <li><strong>-a :</strong> Permet l'affichage des fichiers et répertoires cachés (ceux qui commencent par un . (point))</li>
+                        <li><strong>-lct :</strong> Permet de trier les fichiers et répertoires par date de modification décroissante</li>
+                    </ul>
+                </td>
+            </tr>
+             <tr>
+                <td class="text-center">mv</td>
+                <td class="text-center">move</td>>
+                <td class="text-center">Permet de déplacer ou renommer des fichiers et des répertoires</td>
+                <td>
+                    <ul>
+                        <li><strong>mv monFichier unRep/ :</strong> Déplace monFichier dans le répertoire unRep</li>
+                        <li><strong>mv unRep/monFichier . : </strong>Déplace le fichier monFichier du répertoire unRep là où on se trouve</li>
+                        <li><strong>mv unRep monRep :</strong> Renomme unRep en monRep</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-f : </strong>Écrase les fichiers de destination sans confirmation</li>
+                        <li><strong>-i :</strong> Demande confirmation avant d'écraser</li>
+                        <li><strong>-u :</strong> N'écrase pas le fichier de destination si celui-ci est plus récent</li>
+                    </ul>
+                </td>
+            </tr>
+             <tr>
+                <td class="text-center">cp</td>
+                <td class="text-center">copy</td>>
+                <td class="text-center">Permet de copier des fichiers ou des répertoires</td>
+                <td>
+                    <ul>
+                        <li><strong>cp monFichier sousrep/ :</strong> Copie monFichier dans sousrep</li>
+                        <li><strong> cp -r monRep/ ailleurs/ : </strong>Copie le répertoire monRep (et ses éventuels sous-répertoires) vers ailleurs en créant le répertoire ailleurs/monRep s'il n'existe pas.</li>
+                        <li><strong>cp monRep/{*.cpp,*.h,MakeFile,Session.vim} ailleurs/ : </strong>Copie les fichiers spécifiés dans {} contenus dans le répertoire monRep vers ailleurs. Notez bien qu'il n'y a pas d'espace entre ces noms de fichiers.</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-a : </strong>Archive. Copie en gardant les droits, dates, propriétaires, groupes, etc.</li>
+                        <li><strong>-i :</strong> Demande une confirmation avant d'écraser</li>
+                        <li><strong>-f : </strong>Si le fichier de destination existe et ne peut être ouvert alors le détruire et essayer à nouveau</li>
+                        <li><strong>-R ou -r :</strong> Copie un répertoire et tout son contenu, y compris les éventuels sous-répertoires</li>
+                        <li><strong>-u :</strong> Ne copie que les fichiers plus récents ou qui n'existent pas</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>                
+                <td class="text-center">rm</td>
+                <td class="text-center">remove</td>>
+                <td class="text-center">Permet d'effacer des fichiers</td>
+                <td>
+                    <ul>
+                        <li><strong>rm CeFichier : </strong>Efface du répertoire courant le fichier CeFichier.</li>
+                        <li><strong>rm CeFichier : </strong>Efface du répertoire courant le fichier CeFichier.</li>
+                        <li><strong>rm -rf /tmp/LeRep : </strong>Efface le répertoire /tmp/LeRep ainsi que tous ses fichiers, liens et sous-répertoires sans demander de confirmation.</li>
+                        <li><strong> rm -rf /* : </strong>…La commande qui "tue"… Disparition immédiate de tous vos fichiers.</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-i : </strong>Demande confirmation avant d'effacer</li>                        
+                        <li><strong>-f : </strong>Ne demande pas de confirmation avant d'effacer</li>        
+                        <li><strong>-r : </strong>Efface récursivement. Ce mot signifie "y compris ses sous-répertoires et leur contenu".</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>                
+                <td class="text-center">mkdir</td>
+                <td class="text-center">make directory</td>>
+                <td class="text-center">Crée un répertoire vide</td>
+                <td>
+                    <ul>
+                        <li><strong>-mkdir photos : </strong>Crée le répertoire photos</li>                        
+                        <li><strong>mkdir -p photos/2005/noel : </strong>Crée le répertoire noel et s'ils n'existent pas les répertoires 2005 et photos</li>        
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-p : </strong>Crée les répertoires parents s'ils n'existent pas</li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>                
+                <td class="text-center">rmkdir</td>
+                <td class="text-center">remove directory</td>>
+                <td class="text-center">Supprime un répertoire (vide)</td>
+                <td>
+                    <ul>
+                        <li><strong>rmdir LeRep :</strong>Supprime le répertoire LeRep</li>                        
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li><strong>-p : </strong>Supprime les répertoires parents s'ils deviennent vides</li>
+                    </ul>
+                </td>
+            </tr>
+             <tr>                
+                <td class="text-center">pwd</td>
+                <td class="text-center">print working directory</td>>
+                <td class="text-center">Affiche le répertoire de travail</td>
+                <td>
+                    <ul>
+                        <li></li>        
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li></li>
+                    </ul>
+                </td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td class="text-center">pwd</td>
+                <td class="text-center">liste</td>>
+                <td class="text-center">savoir ou on est</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>  #}

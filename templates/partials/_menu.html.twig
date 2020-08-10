@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="{{ path('homepage') }}">Accueil</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('default_terminal') }}">Terminal et git</a>
+                </li>
+                <a class="nav-link" href="{{ path('default_post') }}">Installer poste de travail <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Languages</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('language_html') }}">HTML</a>
+                    <a class="dropdown-item" href="{{ path('language_css') }}">CSS</a>
+                    <a class="dropdown-item" href="{{ path('language_php') }}">PHP</a>
+                    <a class="dropdown-item" href="{{ path('language_js') }}">JavaScript</a>
+                    <a class="dropdown-item" href="{{ path('language_twig') }}">Twig</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Frameworks</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ path('page_bootstrap') }}">BootStarp</a>
+                    <a class="dropdown-item" href="{{ path('page_lumen') }}">Lumen</a>
+                    <a class="dropdown-item" href="{{ path('page_symfony') }}">Symfony</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

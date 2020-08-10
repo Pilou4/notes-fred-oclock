@@ -1,0 +1,167 @@
+{% include 'base.html.twig' %}
+{% include 'partials/_menu.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="text-center mt-2">Symfony</h1>
+</div>
+
+<div class="container">
+    <ul>
+        <li>Introduction</li>
+        <li>chapitre 1 :<a href="#creation">Création d'un projet</a></li>
+        <li>chapitre 2 :<a href="#dependance">Installation des dépendances utile pour un projet</a></li>
+        <li>chapitre 3 :<a href="#route">Les routes</a></li>
+        <li>chapitre 4 :<a href="#asset">Les assets et les liens</a></li>
+        <li>chapitre 5 :<a href="#template">Les templates</a></li>
+        <li>chapitre 6 :<a href="#methode">Les méthodes</a></li>
+        <li>chapitre 7 :<a href="#session">Les sessions</a></li>
+        <li>chapitre 8 :<a href="#doctrine">Doctrine</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <h3>Introduction</h3>
+    <p>Dans ce tuto j'utilise le squellette de symfony et j'installe les dépendances au fur et mesure que j'en ai besoin. Il est possible d'installer dés le début du projet toutes les dépendances fournis par symfony. </br>
+    Important toujours penser au <strong>namespace</strong> et au <strong>use</strong> . </p>
+</div>
+
+<div class="container">
+    <h3 class="text-center" id="cretion">Chapitre 1 : Création d'un projet</h3>
+
+    <p>Il faut commencer par créer nouveau un repos sur github, puis il faut taper les commandes suivantes dans le terminal : </p>
+    <ol>
+        <li>composer create-project symfony/skeleton <em>"nom du projet"</em></li>
+        <li>Aller dans le réportoire du projet qui vient d'être créer</li>
+        <li>git init</li>
+        <li>git add .</li>
+        <li>git commit -m "premier commit"</li>
+        <li>git remote add origin <em>lien du repos</em></li>
+        <li>git push origin master</li>
+    </ol>
+
+    <p><a href="https://symfony.com/doc/current/setup.html">Lien vers la doc symfony</a></p>
+</div>
+
+<div class="container">
+    <h3 class="text-center" id="dépéndance">Chapitre 2 : Installation des dépendances utile pour un projet</h3>
+    
+    <ul>
+        <li>Debug : il faut utiliser la commande "composer require debug".</br>
+         Debug permet d'avoir les dumps dans la barre d'état de symfony.</li>
+        <li>Maker : il faut utiliser la commande: "composer require maker".</br> 
+        Maker permet de faire pleins de chose pour nous, créer des dosier avec leur classe, créer des méthodes etc...  </li>
+        <li>Twig : il faut utiliser 'composer require twig' </br>
+        Twig : language interpreter par symfony</li>
+    </ul>
+
+    <p>Il est également d'installer tout les paquets en 1 seul ligne "composer require debug,maker,twig </p>
+</div>
+
+
+<div class="container">
+    <h3 class="text-center" id="route">Chapitre 3 : Les routes</h3>
+    <h4>premiére méthode</h4>
+    <p>
+        1. Créer un controller dans "src/Controller" . </br>
+        Comme d'habitude pas oublier le namespace ("App\Créerontroller") et le use ("Symfony\Component\HttpFoundation\Response;") </br> 
+        <img src="{{ asset('assets/images/captureEcranControllerRoute.png') }}" alt="capture d'écran"> </br>
+
+        2. Créer la route dans config/routes/routes.yaml :</br>
+        <img src="{{ asset('assets/images/captureEcranRouteYaml.png') }}" alt="capture d'écran"> </br>
+         <h5> explication </h5> </br> 
+        ligne 1 : nom de la route. </br>
+        ligne 2 : adresse Url </br>
+        ligne 3 : chemin vers le controller à appeler </br>
+
+        <p>Dans cette méthode on revoie juste du texte </p>
+
+
+        <a href="https://symfony.com/doc/current/page_creation.html">Liens vers doc symfony </a>
+    </p>
+
+    <h4>deuxiéme méthode avec les annotations</h4>
+    <p>
+        1. Installer annotations avec la commande composer require annotations </br>
+        <img src="{{ asset('assets/images/annotation.png') }}" alt="capture d'écran" > </br>
+
+        2. Mettre le use et rajouter "extends AbstractController" à la méthode du Controller 
+        ceux qui permet d'accéder à la méthode render()</br>
+
+        3. Créer un docBloc dans le controller au-dessus de la méthode de la route  </br>
+
+         <img src="{{ asset('assets/images/routeAnnotation.png') }}" alt="capture d'écran" > </br>
+
+        <h5> explication </h5> </br> 
+        ligne 12 : le 1er argument de @Route ("/bird) est le seul obligatoire : c'est l'adresse URL , le {id} juste aprés est la partie variable de ma route on pourra acceder a cette méthode de controleur avec les url /bird/2 et /bird/6, etc ... (bien sur le {id} n'est obligatoire), le 2éme argument (name=bird_show) : c'est le nom de la route, le 3éme argument (methods="GET") : c'est le nom de la méthode, le 4éme argument (requirements={"id"="\d+"}) : c'est une sécurité pour s'assurer que notre variable d'URL repond à la contrainte regex "\d+" (ici un nombre) </br>
+        ligne 14 : l'argument int $id permet de récupérer l'id () </br>
+        ligne 16 : le premiére argument est le nom du template et le second est facultatif il permet de transmettre des données dans des variables (ici la variable name renvoie Fred).
+       
+        <a href="https://symfony.com/doc/current/routing.html">Liens vers doc symfony </a> </br>
+        
+    </p>
+</div>
+
+
+<div class="container"> 
+    <h3 class="text-center" id="asset">Chapitre 4: les assets et liens</h3>
+    <h5>Les assets</h5>
+    <p>
+        Il faut commencer par installer les assets avec la commande composer require assets. </br>
+        Assets permet d'accéder à tout les répertoires du fichier public, comme ça il nous permet de faire le lien facilement avec nos fichier css , nos images etc... </br>
+        lien vers une feuille de style ligne 7 <br>
+        <img src="{{ asset('assets/images/assetCss.png') }}" alt ="capture d'écran"></br>
+        lien vers une image </br>
+        <img src="{{ asset('assets/images/assetImage.png') }}" alt ="capture d'écran">
+    </p>
+
+    <h5>Les liens</h5>
+    <p>Il suffit d'utiliser la méthode path , on lui renseigne juste le nom de la route (le name dans @Route de la méthode du controller ). </br>
+        <img src="{{ asset('assets/images/path.png') }}" alt ="capture d'écran">
+    </p>
+         
+</div>
+
+<div class="container" > 
+    <h3 class="text-center" id="methode">Chapitre 5: Les templates</h3>
+    <p>
+        Symfony utilise le language Twig, il faut donc birn avoir installer twig. Une fois instaler le dossier template est créer automatiquement. Le nom des fichiers ont pour extension .html.twig </br>
+        Il y un fichier base.html.twig qui à été créer.</br>
+        <img src="{{ asset('assets/images/base.png') }}" alt ="capture d'écran"> </br>
+        Dans ce fichier il y a la base de notre site on y met le title, nos feuilles de style , on peux également y mettre les fichiers bootstrap. Il suffit juste de faire un include au début de chaque page. Les blocks permettent de rajouter du contenu au body ou même ajouter du JS. On peux créer autant de block qu'on veux. </br>
+        <img src="{{ asset('assets/images/block.png') }}" alt ="capture d'écran"> </br>
+
+    </p>
+</div>
+
+
+<div class="container" > 
+    <h3 class="text-center" id="methode">Chapitre 6: Les méthodes</h3>
+    <p>
+        Pour afficher un Modél il faut : </br>
+        1.instancier la class </br>
+        2.utilisé méthode (getAll())
+    </p>
+</div>
+
+<div class="container">
+    <h3 class="text-center" id="session">Chapitre 7: Les sessions</h3>
+</div>
+
+<div class="container">
+    <h3 class="text-center" id="session">chapitre 8 : Doctrine</h3>
+    <p>
+        1.Il faut commencer par installer orm avec la commande : "composer require 
+        symfony/orm-pack" </br>
+        2.Créer un fichier .env.local et y copier ce morceau code qui est dans .env </br> 
+        <img src="{{ asset('assets/images/.env.png') }}" alt="capture d'écran"> </br>
+        3.Modifier db_user par le nom utilisateur base de données , db_password par le mot de passe et le db_name par le nom de la base que l'on veut créer et renseigner la version du serveur.</br>
+        4.Premiére commande à effectuer php bin/console doctrine:database:create . Cette commande créer la base de données dans phpmyadmin ou adminer.</br>
+        <img src="{{ asset('assets/images/database.png') }}" alt="capture d'écran"> </br>
+        5.Utilisation du maker pour créer des entités commande : php bin/console make:entity </br>
+    </p>
+</div>
+            
+
+{% endblock %}
