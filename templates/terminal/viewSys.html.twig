@@ -1,0 +1,89 @@
+{% include 'base.html.twig' %}
+{% include 'partials/_menu.html.twig' %}
+
+{% block body %}
+    <div class="row ml-4 mr-4">
+        <table class="table text-center">
+            <thead class="thead-dark">
+                <tr class="bg-warning"> 
+                    <td colspan="5" >
+                        <h1 class="text-center">{{ systemes.name }}</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">Signification</th>
+                    <th scope="col">Fonction</th>
+                    {% if systemes.utId is not empty %}
+                        <th scope="col">exemples d'utilisation</th>
+                    {% endif %} 
+                    {% if systemes.opId is not empty %}
+                        <th scope="col">Options les plus courantes</th>
+                    {% endif %}              
+                    {% if systemes.auId is not empty %}
+                        <th scope="col">Type d'autorisations</th>
+                    {% endif %}                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ systemes.signification }}</td>
+                    <td>{{ systemes.fonction }}</td>
+                    {% if systemes.utId is not empty %}
+                        {% for util in systemes.utId %}
+                        <td class="text-left">
+                            <ul>
+                                {% if util.un is not empty %}<li>{{ util.un }}</li>{% endif %}
+                                {% if util.deux is not empty %}<li>{{ util.deux }}</li>{% endif %}
+                                {% if util.trois is not empty %}<li>{{ util.trois }}</li>{% endif %}
+                                {% if util.quatre is not empty %}<li>{{ util.quatre }}</li>{% endif %}
+                                {% if util.cinq is not empty %}<li>{{ util.cinq }}</li>{% endif %}
+                                {% if util.six is not empty %}<li>{{ util.six }}</li>{% endif %}
+                            </ul>
+                        </td>
+                        {% endfor %}
+                    {% endif %} 
+                    {% if systemes.opId is not empty %}
+                    {% for option in systemes.opId %}
+                        <td class="text-left">
+                            <ul>
+                                {% if option.one is not null %}<li>{{ option.one }}</li>{% endif %}
+                                {% if option.two is not null %}<li>{{ option.two }}</li>{% endif %}  
+                                {% if option.three is not null %}<li>{{ option.three }}</li>{% endif %}  
+                                {% if option.four is not null %}<li>{{ option.four }}</li>{% endif %}  
+                                {% if option.five is not null %}<li>{{ option.five }}</li>{% endif %}  
+                                {% if option.six is not null %}<li>{{ option.six }}</li>{% endif %}  
+                                {% if option.seven is not null %}<li>{{ option.seven }}</li>{% endif %}  
+                                {% if option.eight is not null %}<li>{{ option.eight }}</li>{% endif %}  
+                                {% if option.nine is not null %}<li>{{ option.nine }}</li>{% endif %}  
+                                {% if option.ten is not null %}<li>{{ option.ten }}</li>{% endif %}  
+                                {% if option.eleven is not null %}<li>{{ option.eleven }}</li>{% endif %}  
+                                {% if option.twelve is not null %}<li>{{ option.twelve }}</li>{% endif %}  
+                                {% if option.thirteen is not null %}<li>{{ option.thirteen }}</li>{% endif %}
+                                {% if option.fourteen is not null %}<li>{{ option.fourteen }}</li>{% endif %}  
+                                {% if option.fiveteen is not null %}<li>{{ option.fiveteen }}</li>{% endif %}
+                                {% if option.fiveteen is not null %}<li>{{ option.fiveteen }}</li>{% endif %}                   
+                            </ul>
+                        </td>
+                    {% endfor %}
+                    {% endif %} 
+                    {% for autorisation in systemes.auId %}
+                        <td class="text-left">
+                            <ul>
+                                {% if autorisation.premier is not empty %}<li>{{ autorisation.premier }}</li>{% endif %}
+                                {% if autorisation.deuxieme is not empty %}<li>{{ autorisation.deuxieme }}</li>{% endif %}
+                                {% if autorisation.troisieme is not empty %}<li>{{ autorisation.troisieme }}</li>{% endif %}
+                                {% if autorisation.quatrieme is not empty %}<li>{{ autorisation.quatrieme }}</li>{% endif %}
+                                {% if autorisation.cinquieme is not empty %}<li>{{ autorisation.cinquieme }}</li>{% endif %}
+                                {% if autorisation.sixieme is not empty %}<li>{{ autorisation.sixieme }}</li>{% endif %}
+                                {% if autorisation.septieme is not empty %}<li>{{ autorisation.septieme }}</li>{% endif %}
+                                {% if autorisation.huitieme is not empty %}<li>{{ autorisation.huitieme }}</li>{% endif %}
+                                {% if autorisation.neuvieme is not empty %}<li>{{ autorisation.neuvieme }}</li>{% endif %}
+                                {% if autorisation.dixieme is not empty %}<li>{{ autorisation.dixieme }}</li>{% endif %}
+                            </ul>
+                        </td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

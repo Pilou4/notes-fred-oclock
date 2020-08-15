@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Controller;
+
+use App\Entity\BaliseDescription;
+use App\Entity\BaliseEnTete;
+use App\Entity\BaliseGenerique;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -22,6 +26,7 @@ class LanguageController extends AbstractController
      */
     public function html ()
     {
+       
         return $this->render('language/html.html.twig');
     }
 

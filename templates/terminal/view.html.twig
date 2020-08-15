@@ -1,0 +1,69 @@
+{% include 'base.html.twig' %}
+{% include 'partials/_menu.html.twig' %}
+
+{% block body %}
+    <div class="row ml-4 mr-4">
+        <table class="table text-center">
+        <thead class="thead-dark">
+            <tr class="bg-warning"> 
+                <td colspan="4" >
+                    <h1 class="text-center">{{ terminal.commande|upper }}</h1>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="col">Signification</th>
+                <th scope="col">Fonction</th>
+                {% if terminal.utils is not empty %}
+                <th scope="col">exemples d'utilisation</th>
+                {% endif %}
+                {% if terminal.options is not empty %}
+                    <th scope="col">Options les plus courantes</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>{{ terminal.signification }}</td>
+                <td>{{ terminal.fonction }}</td>
+                {% if terminal.utils is not empty %}
+                {% for util in terminal.utils %}
+                    <td class="text-left">
+                        <ul>
+                            {% if util.first is not empty %}<li>{{ util.first }}</li>{% endif %}
+                            {% if util.second is not empty %}<li>{{ util.second }}</li>{% endif %}
+                            {% if util.third is not empty %}<li>{{ util.third }}</li>{% endif %}
+                            {% if util.four is not empty %}<li>{{ util.four }}</li>{% endif %}
+                            {% if util.five is not empty %}<li>{{ util.five }}</li>{% endif %}
+                        </ul>
+                    </td>
+                {% endfor %}
+                {% endif %}
+                {% if terminal.options is not empty %}
+                {% for key, option in terminal.options %}
+                    <td class="text-left">
+                        <ul>
+                            {% if option.un is not null %}<li>{{ option.un }}</li>{% endif %}
+                            {% if option.deux is not null %}<li>{{ option.deux }}</li>{% endif %}  
+                            {% if option.trois is not null %}<li>{{ option.trois }}</li>{% endif %}  
+                            {% if option.quatre is not null %}<li>{{ option.quatre }}</li>{% endif %}  
+                            {% if option.cinq is not null %}<li>{{ option.cinq }}</li>{% endif %}  
+                            {% if option.six is not null %}<li>{{ option.six }}</li>{% endif %}  
+                            {% if option.sept is not null %}<li>{{ option.sept }}</li>{% endif %}  
+                            {% if option.huit is not null %}<li>{{ option.huit }}</li>{% endif %}  
+                            {% if option.neuf is not null %}<li>{{ option.neuf }}</li>{% endif %}  
+                            {% if option.dix is not null %}<li>{{ option.dix }}</li>{% endif %}  
+                            {% if option.onze is not null %}<li>{{ option.onze }}</li>{% endif %}  
+                            {% if option.douze is not null %}<li>{{ option.douze }}</li>{% endif %}  
+                            {% if option.treize is not null %}<li>{{ option.treize }}</li>{% endif %}
+                            {% if option.quatorze is not null %}<li>{{ option.quatorze }}</li>{% endif %}  
+                            {% if option.quinze is not null %}<li>{{ option.quinze }}</li>{% endif %}                
+                        </ul>
+                    </td>
+                {% endfor %}
+                {% endif %}
+            </tr>
+        </tbody>
+    </div>                             
+{% endblock %}

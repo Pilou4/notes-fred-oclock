@@ -1,0 +1,72 @@
+{% include 'base.html.twig' %}
+{% include 'partials/_menu.html.twig' %}
+
+{% block body %}
+   
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <h1 class="text-center mt-5">TERMINAL</h1>
+        </div>
+    </div>
+
+    <div class="container d-flex">
+        <div class="row m-5">
+            <table class="table table text-center">
+                <thead class="thead-dark">
+                    <tr class="bg-warning"> 
+                        <td colspan="4" >
+                            <h2 class="text-center">Commande de base</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col" >commande</th>
+                        <th scope="col">Signification</th>
+                        <th scope="col">Fonction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key, terminal in terminals %}
+                    <tr>
+                        <th scope="row"><a href="{{ path('terminal_id', {'id': terminal.id}) }}">{{ terminal.commande }}</th>
+                        <td>{{ terminal.signification }}</td>
+                        <td>{{ terminal.fonction }}</td>                
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="row m-5">
+            <table class="table table text-center">
+                <thead class="thead-dark">
+                    <tr class="bg-warning"> 
+                        <td colspan="4" >
+                            <h2 class="text-center">commandes système</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="col" >commande</th>
+                        <th scope="col">Signification</th>
+                        <th scope="col">Fonction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for key, systeme in systemes %}
+                    <tr>
+                        <th scope="col"><a href="{{ path('terminalSys_id', {'id': systeme.id}) }}">{{ systeme.name }}</th>
+                        <td scope="col">{{ systeme.signification }}</td>
+                        <td scope="col">{{ systeme.fonction }}</td>
+                    </tr> 
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+ {# ------------------------------------------------------------------------ #}
+        
+        
+
+
+
+{% endblock %}

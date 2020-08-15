@@ -1,6 +1,19 @@
-body 
+/* body 
 {
-    background-color: rgb(236, 234, 234);
+    background-image: url("../images/background-2405619__340.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Indie Flower', cursive;
+} */
+
+h1
+{
+    font-size: 4rem;
+}
+
+table
+{
+    font-size: 1.4rem;
 }
 
 td
@@ -8,7 +21,23 @@ td
     border: 1px solid black;
 }
 
+th
+{
+    border: 1px solid black;
+}
+
+.title_table 
+{
+    background-color: aqua;
+}
+
 table 
 {
-    border-collapse: co;
+    background-color: azure;
+    border: 2px solid black;
+}
+
+.commande
+{
+    text-decoration: underline;
 }

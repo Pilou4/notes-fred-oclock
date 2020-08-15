@@ -5,4 +5,141 @@
     <div class="container">
         <h1 class="text-center">Installer un poste de travail sur Ubuntu</h1>
     </div>
+
+    <div class="container">
+        <h2>Installation de logiciels Ubuntu</h2>
+        <p> 
+            On va donc installer les logiciels avec les commandes suivantes.
+        </p>  
+        <h3>Apache</h3>
+        <p>
+            <span class="commande">sudo apt-get update</span> </br>
+            <span class="commande">sudo apt-get install apache2</span>
+        </p>
+        <h3>PHP 7.4</h3>
+        <p>
+            <span class="commande">sudo apt-get update</span> </br>
+            <span class="commande">sudo apt-get install php7.4 php7.4-common php7.4-cli php7.4-mysql libapache2-mod-php7.4 php7.4-mbstring php7.4-json php7.4-xml</span>
+        </p>
+        <h3>MySQL</h3>
+        <p>
+            <span class="commande">sudo apt-get install mysql-server </span></br>
+            Si vous souhaitez permettre un accès à la base de donnée depuis l'exterieur </br>
+            <span class="commande" >sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</span> </br>
+            puis remplacer bind-address = 127.0.0.1 par bind-address = 0.0.0.0 </br>
+            On redémarre mysql : <span>sudo service mysql restart</span>
+        </p>
+        <h3>Création d'un super-utilisateur</h3>
+        <p>
+            Nous allons créer un super-utlisateur autre que <em>root</em> afin de gérer notre serveur MySQL.
+        </p>
+        <p>
+            On se connecte à la console de mysql via <span class="commande">sudo mysql </span>puis on va entrer les requêtes SQL ci-dessous.
+        </p>
+        <p>
+            Pour un utilisateur ayant l'identifiant <em>toto</em> et le mot de passe <em>password</em> :
+        </p>
+        <p>
+            CREATE USER 'toto'@'localhost' IDENTIFIED BY 'password';
+            GRANT ALL PRIVILEGES ON *.* TO 'toto'@'localhost' WITH GRANT OPTION; 
+        </p>
+        <p>
+            Vous pourrez utiliser ce compte pour gérer vos bases depuis PhpMyAdmin.
+        </p>
+         <h3>PhpMyAdmin</h3>
+        <p>
+            <span class="commande">sudo apt-get install phpmyadmin</span>
+        </p>
+        <p>
+            A la première question on répondra Ok ou Yes (installation d'un package supplémentaire et création d'un mot de passe automatique pour PMA).
+        </p>
+        <p>
+             Quand l'install vous demande quel serveur web vous utilisez, cochez apache2 avec la barre d'Espace ! Un astérisque * valide le choix, ensuite faites Entrée ou Ok. </br>
+             Si vous vous êtes trompé suite à ce choix, après l'install, vous pouvez relancer la configuration via sudo dpkg-reconfigure phpmyadmin
+        </p>
+         <h3>Git</h3>
+        <p>
+            <span class="commande">sudo apt-get install git</span>
+        </p>
+        <h3>Zip</h3>
+        <p>
+            <span class="commande">sudo apt-get install zip</span>
+        </p>
+        <h3>Composer</h3>
+        <p>
+            <span class="commande">php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"</span></br>
+            <span class="commande">php composer-setup.php</span></br>
+            <span class="commande">php -r "unlink('composer-setup.php');"</span></br>
+            <span class="commande">sudo mv composer.phar /usr/local/bin/composer</span>
+        </p>
+        <h2>Configurations</h2>
+        <h3>DocumentRoot Apache</h3>
+        <p>
+            DocumentRoot, c'est le dossier contenant les fichiers du site livré par Apache. (/var/www/html) </br>
+            Suppression du fichier <em>index.html</em> par défaut d'Apache 2 Et modification des droits d'accès du <em>DocumentRoot</em>
+        </p>
+        <p>
+            <span class="commande">sudo rm -f /var/www/html/index.html</span> </br>
+            <span class="commande">sudo chown -Rf ubuntu:www-data /var/www/html</span>
+        </p>
+        <h3>URL Rewriting</h3>
+        <p>
+            <span class="commande">sudo a2enmod rewrite</span>
+        </p>       
+        <p>
+            Dans /etc/apache2/apache2.conf
+        </p>
+        <p> 
+                <img src="{{ asset('assets/images/url.png') }}" alt ="capture d'écran">
+        </p>
+        <p>Puis</p>
+        <p>
+            <span class="commande">sudo systemctl restart apache2</span>
+        </p>
+
+        <h3>Configuration Git</h3>
+        <p>
+            On va créer une clé SSH pour notre compte GitHub afin que le serveur se connecte à nos dépôts GitHub facilement.
+            Ainsi, on pourra cloner nos dépôts et mettre en production nos sites internet 
+        </p>
+        <p>
+            <span class="commande">ssh-keygen -t rsa</span>
+        </p>
+        <p>
+            La commande est interactive, voici un exemple :
+            (on a laissé volontairement toutes les réponses vides)
+        </p>
+        <p> 
+                <img src="{{ asset('assets/images/ssh.png') }}" alt ="capture d'écran">
+        </p>
+        <h4>
+            Vérifier la création de la clé publique et copier le contenu du fichier qui va être affiché
+        </h4>
+        <p>
+            <span class="commande">cat ~/.ssh/id_rsa.pub</span>
+        </p>
+        <h4>Ajouter la clé SSH à son compte GitHub</h4>
+        <ul>
+            <li>aller à l'URL https://github.com/settings/profile</li>
+            <li>SSH & GPG keys dans le menu de gauche</li>
+            <li>bouton New SSH Key à droite en haut</li>
+            <li>nommer la clé /li>
+            <li>coller le contenu du fichier dans le grand "textarea"</li>
+            <li>Ok</li>
+        </ul>
+        <h3>Configurer Git sur le serveur</h3>
+        <p>Les deux premières commandes sont à personnaliser avec le pseudo et l'email de son compte GitHub</p>
+        <p>
+            <span class="commande">git config --global user.name "github_username"</span> </br>
+            <span class="ommande">git config --global user.email "github_email@my.com"</span></br>
+            <span class="commande">git config --global push.default simple</span></br>
+            <span class="commande">git config --global color.ui true</span></br>
+        </p>
+        <p>Et pour vérifier (chaque configuration doit apparaitre) :</p>
+        <p><span class="commande">git config -l</span></p>
+
+
+
+                   
+    </div>
 {% endblock %}

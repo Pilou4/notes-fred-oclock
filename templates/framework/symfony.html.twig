@@ -96,13 +96,12 @@
         <h5> explication </h5> </br> 
         ligne 12 : le 1er argument de @Route ("/bird) est le seul obligatoire : c'est l'adresse URL , le {id} juste aprés est la partie variable de ma route on pourra acceder a cette méthode de controleur avec les url /bird/2 et /bird/6, etc ... (bien sur le {id} n'est obligatoire), le 2éme argument (name=bird_show) : c'est le nom de la route, le 3éme argument (methods="GET") : c'est le nom de la méthode, le 4éme argument (requirements={"id"="\d+"}) : c'est une sécurité pour s'assurer que notre variable d'URL repond à la contrainte regex "\d+" (ici un nombre) </br>
         ligne 14 : l'argument int $id permet de récupérer l'id () </br>
-        ligne 16 : le premiére argument est le nom du template et le second est facultatif il permet de transmettre des données dans des variables (ici la variable name renvoie Fred).
+        ligne 16 : le premiére argument est le nom du template et le second est facultatif il permet de transmettre des données dans des variables aux templates (ici la variable name renvoie Fred).
        
         <a href="https://symfony.com/doc/current/routing.html">Liens vers doc symfony </a> </br>
         
     </p>
 </div>
-
 
 <div class="container"> 
     <h3 class="text-center" id="asset">Chapitre 4: les assets et liens</h3>
@@ -150,17 +149,39 @@
 </div>
 
 <div class="container">
-    <h3 class="text-center" id="session">chapitre 8 : Doctrine</h3>
+    <h3 class="text-center" id="doctrine">chapitre 8 : Doctrine</h3>
+    <h4>1.créer base de donnée</h4>
     <p>
-        1.Il faut commencer par installer orm avec la commande : "composer require 
-        symfony/orm-pack" </br>
-        2.Créer un fichier .env.local et y copier ce morceau code qui est dans .env </br> 
+        - Il faut commencer par installer orm avec la commande : "composer require 
+        symfony/orm-pack" et que le maker soit installée.</br>
+        - Créer un fichier .env.local et y copier ce morceau code qui est dans .env </br> 
         <img src="{{ asset('assets/images/.env.png') }}" alt="capture d'écran"> </br>
-        3.Modifier db_user par le nom utilisateur base de données , db_password par le mot de passe et le db_name par le nom de la base que l'on veut créer et renseigner la version du serveur.</br>
-        4.Premiére commande à effectuer php bin/console doctrine:database:create . Cette commande créer la base de données dans phpmyadmin ou adminer.</br>
+        - Modifier db_user par le nom utilisateur base de données, db_password par le mot de passe, le db_name par le nom de la base que l'on veut créer et renseigner la version du serveur.</br>
+        - Il ne reste plus qu'à taper la commande: php bin/console doctrine:database:create .</br>
         <img src="{{ asset('assets/images/database.png') }}" alt="capture d'écran"> </br>
-        5.Utilisation du maker pour créer des entités commande : php bin/console make:entity </br>
+        - Voilà la base est créer . </br>
     </p>
+    <h4>2.Utilisation du maker</h4>
+    <p>
+        - Bien sûr il faut que le maker soit installé. Il faut tapé dans la console la commande suivante : php bin/console make:entity, puis remplir le nom l'entité (nom de la table) </br>
+        <img src="{{ asset('assets/images/entite1.png') }}" alt="capture d'écran"> </br>
+        - Ajouter le nom de la propriétés de la table</br>
+        <img src="{{ asset('assets/images/entite2.png') }}" alt="capture d'écran"> </br>
+        - Le maker va ensuite poser plusieurs question .Le nom de la propriété que l'on veux ajouter , le type si c'est un int,du text,un string etc(il est possible de taper "?" pour afficher la liste ds types), si la propriété peux être vide ou pas .Par default le maker propose des réponses aux questions entre les crochets [], si ça convient il suufit de taper entrée, sinon de renseigner le type souhaité. </br>
+        <img src="{{ asset('assets/images/entite3.png') }}" alt="capture d'écran"> </br>
+        - A la fin il nous propose de recommencer l'opération, une fois toute les propriétés renseigné il suffit de taper sur entrée. Si ça c'est bien passée on a message "success"</br>
+        <img src="{{ asset('assets/images/entite4.png') }}" alt="capture d'écran"> </br>
+       
+    </p>
+    <h4>3.Créer une migration</h4>
+    <p>
+        Le maker à créer pour nous toutes les classes dans le dossier src/Entity, maintenant il faut créer une migration vers la base de données. Pour cela il faut taper la commandes : php bin/console make:migration.Cette commande prépare la migration. Penser à verifier le dossier migration. </br>
+        <img src="{{ asset('assets/images/migration1.png') }}" alt="capture d'écran"> </br>
+        Ensuite il faut taper la commande : doctrine:migrations:migrate ,il va nous demander si on est sur d vouloir faire la migration. Taper yes et on a un message comme quoi la migration c'est bien passée. </br>
+        <img src="{{ asset('assets/images/entite2.png') }}" alt="capture d'écran"> </br>
+        Ca y est la base de donnée est créer avec ses tables et ses propriétés
+    </p>
+    <h4>4.Les relations entre table.</h4>
 </div>
             
 
